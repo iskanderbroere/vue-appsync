@@ -22,9 +22,11 @@
     "dotenv": "^5.0.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
-    "nuxt-edge": "^2.0.0-25382382.ba4aa6d",
+    "nuxt-edge": "^2.0.0-25386511.7a7239d",
     "subscriptions-transport-ws": "^0.9.7",
-    "vue-apollo": "^3.0.0-beta.5"
+    "uuid": "^3.2.1",
+    "vue-apollo": "^3.0.0-beta.5",
+    "vue-awesome": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

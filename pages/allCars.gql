@@ -1,9 +1,0 @@
-{
-  allCars {
-    id
-    make
-    model
-    year
-    photoURL
-  }
-}

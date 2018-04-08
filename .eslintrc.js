@@ -15,10 +15,26 @@ module.exports = {
   plugins: [
     'vue'
   ],
-  rules: {
-    "semi": [2, "never"],
+  "rules": {
+    "semi": [
+      2,
+      "never"
+    ],
     "no-console": "off",
-    "vue/max-attributes-per-line": "off",
-    "prettier/prettier": ["error", { "semi": false }]
-  }
+    "no-debugger": "off",
+    "vue/max-attributes-per-line": [2, {
+      "singleline": 3,
+      "multiline": {
+        "max": 1,
+        "allowFirstLine": true
+      }
+    }],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "printWidth": 120
+      }
+    ]
+  },
 }

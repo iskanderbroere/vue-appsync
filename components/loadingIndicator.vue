@@ -12,6 +12,7 @@
 .spinner {
   width: 50px;
   height: 40px;
+  font-size: 10px;
   text-align: center;
 }
 

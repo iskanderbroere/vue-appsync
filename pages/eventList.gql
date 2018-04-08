@@ -1,0 +1,16 @@
+query eventList {
+    listEvents {
+    items {
+      id
+      name
+      where
+      when
+      description
+      comments {
+        items {
+          commentId
+        }
+      }
+    }
+  }
+}
