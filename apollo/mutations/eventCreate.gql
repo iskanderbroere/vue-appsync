@@ -1,4 +1,4 @@
-mutation($name: String! $when: String! $where: String! $description: String!) {
+mutation($name: String! $when: String! $where: String! $description: String) {
   createEvent(
     name: $name
     when: $when

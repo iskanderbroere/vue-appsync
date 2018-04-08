@@ -58,6 +58,9 @@ export default {
       query: EVENT_LIST,
       update: data => {
         return data.listEvents.items
+      },
+      error(error) {
+        console.error("We've got an error!", error)
       }
     }
   }

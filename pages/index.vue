@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { v1 as uuid } from "uuid"
+import { v4 as uuid } from "uuid"
 import eventList from "~/components/eventList"
 import EVENT_CREATE from "~/apollo/mutations/eventCreate"
 import EVENT_LIST from "~/apollo/queries/eventList"
@@ -29,8 +29,8 @@ export default {
       newEvent: {
         name: "",
         when: "",
-        where: null,
-        description: ""
+        where: "",
+        description: null
       }
     }
   },
@@ -58,7 +58,7 @@ export default {
           }
         })
       } catch (e) {
-        console.error(e)
+        console.log(e)
         this.newEvent = newEvent
       }
     }

@@ -23,7 +23,7 @@
     "dotenv": "^5.0.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
-    "nuxt-edge": "^2.0.0-25386511.7a7239d",
+    "nuxt-edge": "^2.0.0-25386646.2be9d13",
     "subscriptions-transport-ws": "^0.9.7",
     "uuid": "^3.2.1",
     "vue-apollo": "^3.0.0-beta.5",
