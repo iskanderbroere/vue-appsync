@@ -1,10 +1,10 @@
 <template>
   <main>
     <form @submit.prevent="createEvent()">
-      <input v-model="newEvent.name" placeholder="edit me">
-      <input v-model="newEvent.when" placeholder="edit me">
-      <input v-model="newEvent.where" placeholder="edit me">
-      <input v-model="newEvent.description" placeholder="edit me">
+      <input v-model.trim="newEvent.name" placeholder="edit me">
+      <input v-model.trim="newEvent.when" placeholder="edit me">
+      <input v-model.trim="newEvent.where" placeholder="edit me">
+      <input v-model.trim="newEvent.description" placeholder="edit me">
       <button type="submit">Submit</button>
     </form>
     <event-list />
@@ -37,7 +37,10 @@ export default {
   methods: {
     createEvent() {
       const client = this.$apollo.getClient()
-      const newEvent = this.newEvent
+      const newEvent = {
+        ...this.newEvent,
+        description: this.newEvent.description && this.newEvent.description !== "" ? this.newEvent.description : null
+      }
       try {
         client.mutate({
           mutation: EVENT_CREATE,

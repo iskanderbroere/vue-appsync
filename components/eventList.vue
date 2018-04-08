@@ -2,7 +2,8 @@
   <ol>
     <loading-indicator v-if="$apollo.loading"/>
     <li v-for="event in events" v-else :key="event.id">
-      <h1>{{ event.name }} <code>{{ event.id }}</code></h1>
+      <h1>{{ event.name }} <code>{{ event.when }}</code></h1>
+      <address>Address: {{ event.where }}</address>
       <p>{{ event.description }}</p>
       <delete-button @clicked="deleteEvent(event.id)"/>  
     </li>
@@ -81,7 +82,12 @@ li {
   border: 2px solid black;
 }
 code {
-  font-size: 20px;
-  color: gray(80);
+  font-size: 18px;
+  color: gray(110);
+}
+address {
+  font-size: 18px;
+  font-style: italic;
+  color: gray(110);
 }
 </style>
