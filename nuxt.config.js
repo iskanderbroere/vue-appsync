@@ -21,6 +21,7 @@ export default {
   render: {
     http2: { push: true }
   },
+  css: ["bootstrap/dist/css/bootstrap-reboot.css"],
   plugins: ["~/plugins/vue-font-awesome"],
   build: {
     extend(config, { isDev, isClient, isServer }) {

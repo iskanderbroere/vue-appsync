@@ -7,33 +7,25 @@
       <input v-model="newEvent.description" placeholder="edit me">
       <button type="submit">Submit</button>
     </form>
-    <ul>
-      <loading-indicator v-if="$apollo.loading"/>
-      <li v-for="event in events" v-else :key="event.id">
-        <h1>{{ event.name }} <code>{{ event.id }}</code></h1>
-        <p>{{ event.description }}</p>
-        <button @click.prevent="deleteEvent(event.id)"><icon name="times-circle"/></button>
-        
-      </li>
-    </ul>
+    <event-list />
   </main>
-  
 </template>
 
 <script>
-import uuid from "uuid/v1"
-import loadingIndicator from "~/components/loadingIndicator"
-import EVENT_CREATE from "./eventCreate.gql"
-import EVENT_LIST from "./eventList.gql"
-import EVENT_DELETE from "./eventDelete.gql"
+import { v1 as uuid } from "uuid"
+import eventList from "~/components/eventList"
+import EVENT_CREATE from "~/apollo/mutations/eventCreate"
+import EVENT_LIST from "~/apollo/queries/eventList"
 
 export default {
+  head: {
+    title: "Events"
+  },
   components: {
-    loadingIndicator
+    eventList
   },
   data() {
     return {
-      events: [],
       newEvent: {
         name: "",
         when: "",
@@ -69,40 +61,6 @@ export default {
         console.error(e)
         this.newEvent = newEvent
       }
-    },
-    deleteEvent(eventId) {
-      const client = this.$apollo.getClient()
-      try {
-        client.mutate({
-          mutation: EVENT_DELETE,
-          variables: { id: eventId },
-          update: store => {
-            let data = store.readQuery({ query: EVENT_LIST })
-            let filteredData = data.listEvents.items.findIndex(event => event.id === eventId)
-            if (filteredData !== -1) {
-              data.listEvents.items.splice(filteredData, 1)
-            }
-            store.writeQuery({ query: EVENT_LIST, data })
-          },
-          optimisticResponse: {
-            __typename: "Mutation",
-            deleteEvent: {
-              id: eventId,
-              __typename: "Event"
-            }
-          }
-        })
-      } catch (e) {
-        console.error(e)
-      }
-    }
-  },
-  apollo: {
-    events: {
-      query: EVENT_LIST,
-      update: data => {
-        return data.listEvents.items
-      }
     }
   }
 }
@@ -112,7 +70,6 @@ export default {
 .fa-icon {
   width: auto;
   height: 1em;
-  color: red;
   /* old Safari */
   max-width: 100%;
   max-height: 100%;
@@ -127,20 +84,5 @@ h1 {
   font-family: "Suez One", serif;
   font-size: 48px;
   font-weight: 400;
-}
-img {
-  max-width: 400px;
-}
-ul {
-  list-style: none;
-  margin: 22px;
-  padding: 0;
-}
-li {
-  line-height: 200%;
-}
-code {
-  font-size: 20px;
-  color: gray(80);
 }
 </style>
