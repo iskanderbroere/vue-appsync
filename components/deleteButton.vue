@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="clicked()">Delete</button>
+  <button @click.prevent="clicked()"><slot/></button>
 </template>
 
 <script>

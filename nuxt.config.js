@@ -1,29 +1,34 @@
 import {} from "dotenv/config"
 import nodeExternals from "webpack-node-externals"
+import webpack from "webpack"
 
 export default {
-  mode: "universal",
+  mode: "spa",
   head: {
     meta: [{ charset: "utf-8" }, { name: "viewport", content: "width=device-width, initial-scale=1" }],
     link: [
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Suez+One"
+        href: "https://fonts.googleapis.com/css?family=Open+Sans:400,400i|EB+Garamond:400,700"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css"
       }
     ]
   },
-  modules: ["@nuxtjs/apollo"],
-  apollo: {
-    clientConfigs: {
-      default: "~/apollo/clientconfigs/default.js"
-    }
-  },
+  modules: ["~/modules/aws.js"],
   render: {
     http2: { push: true }
   },
   css: ["bootstrap/dist/css/bootstrap-reboot.css"],
-  plugins: ["~/plugins/vue-font-awesome"],
+  plugins: ["~/plugins/vue-font-awesome", "~/plugins/mapbox"],
   build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        mapboxgl: "mapbox-gl"
+      })
+    ],
     extend(config, { isDev, isClient, isServer }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -43,7 +48,8 @@ export default {
     }
   },
   env: {
-    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT || "test",
-    API_KEY: process.env.API_KEY || "test"
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+    MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
+    API_KEY: process.env.API_KEY
   }
 }

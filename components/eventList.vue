@@ -2,10 +2,19 @@
   <ol>
     <loading-indicator v-if="$apollo.loading"/>
     <li v-for="event in events" v-else :key="event.id">
-      <h1>{{ event.name }} <code>{{ event.when }}</code></h1>
+      <mapbox :access-token="api"
+              :map-options="{
+                style: 'mapbox://styles/mapbox/light-v9',
+                center: [5.1118473,52.0856266],
+                zoom: 12
+              }"
+      />
+      <h1>{{ event.name }}</h1>
+      <code>When: {{ event.id }}</code>
       <address>Address: {{ event.where }}</address>
       <p>{{ event.description }}</p>
-      <delete-button @clicked="deleteEvent(event.id)"/>  
+      <delete-button @clicked="deleteEvent(event.id)">Delete</delete-button>  
+      <delete-button @clicked="$router.push(`/${event.id}`)">more &#8614;</delete-button>  
     </li>
   </ol>
 </template>
@@ -13,17 +22,20 @@
 <script>
 import loadingIndicator from "~/components/loadingIndicator"
 import deleteButton from "~/components/deleteButton"
-import EVENT_LIST from "~/apollo/queries/eventList"
-import EVENT_DELETE from "~/apollo/mutations/eventDelete"
+import mapbox from "mapbox-gl-vue"
+import EVENT_LIST from "~/apollo/queries/eventList.gql"
+import EVENT_DELETE from "~/apollo/mutations/eventDelete.gql"
 
 export default {
   components: {
     loadingIndicator,
-    deleteButton
+    deleteButton,
+    mapbox
   },
   data() {
     return {
-      events: []
+      events: [],
+      api: process.env.MAPBOX_ACCESS_TOKEN
     }
   },
   methods: {
@@ -57,9 +69,7 @@ export default {
   apollo: {
     events: {
       query: EVENT_LIST,
-      update: data => {
-        return data.listEvents.items
-      },
+      update: data => data.listEvents.items,
       error(error) {
         console.error("We've got an error!", error)
       }
@@ -69,6 +79,10 @@ export default {
 </script>
 
 <style scoped>
+#map {
+  width: 100%;
+  height: 200px;
+}
 ol {
   list-style: none;
   margin: 22px;

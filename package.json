@@ -16,27 +16,30 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^3.0.6",
-    "apollo-link-http": "^1.5.3",
-    "apollo-link-ws": "^1.0.7",
+    "apollo-link-http": "^1.5.4",
+    "apollo-link-ws": "^1.0.8",
     "apollo-utilities": "^1.0.11",
-    "bootstrap": "^4.0.0",
+    "aws-appsync": "^1.0.15",
+    "bootstrap": "^4.1.0",
     "dotenv": "^5.0.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "lodash": "^4.17.5",
-    "nuxt-edge": "^2.0.0-25386646.2be9d13",
+    "mapbox-gl": "^0.44.2",
+    "mapbox-gl-vue": "^1.7.2",
+    "nuxt-edge": "^2.0.0-25396247.c64bcb7",
     "subscriptions-transport-ws": "^0.9.7",
     "uuid": "^3.2.1",
     "vue-apollo": "^3.0.0-beta.5",
     "vue-awesome": "^3.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.4.0",
-    "prettier": "^1.11.1"
+    "prettier": "^1.12.0"
   }
 }

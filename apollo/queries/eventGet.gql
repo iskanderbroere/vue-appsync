@@ -1,0 +1,11 @@
+query eventGet($id: ID!) {
+  getEvent(id: $id) {
+    id
+    name
+    comments {
+      items {
+        content
+      }
+    }
+  }
+}

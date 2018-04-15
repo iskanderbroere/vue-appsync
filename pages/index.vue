@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import { v4 as uuid } from "uuid"
 import eventList from "~/components/eventList"
-import EVENT_CREATE from "~/apollo/mutations/eventCreate"
-import EVENT_LIST from "~/apollo/queries/eventList"
+import EVENT_CREATE from "~/apollo/mutations/eventCreate.gql"
+import EVENT_LIST from "~/apollo/queries/eventList.gql"
 
 export default {
   head: {
@@ -36,32 +35,32 @@ export default {
   },
   methods: {
     createEvent() {
-      const client = this.$apollo.getClient()
       const newEvent = {
         ...this.newEvent,
         description: this.newEvent.description && this.newEvent.description !== "" ? this.newEvent.description : null
       }
       try {
-        client.mutate({
+        this.$apollo.mutate({
           mutation: EVENT_CREATE,
           variables: newEvent,
-          update: (store, { data: { createEvent } }) => {
-            let data = store.readQuery({ query: EVENT_LIST })
-            data.listEvents.items.push(createEvent)
-            store.writeQuery({ query: EVENT_LIST, data })
+          update: (proxy, { data: { createEvent } }) => {
+            const query = EVENT_LIST
+            const data = proxy.readQuery({ query })
+            data.listEvents.items = [...data.listEvents.items.filter(e => e.id !== -1), createEvent]
+            proxy.writeQuery({ query, data })
           },
           optimisticResponse: {
             __typename: "Mutation",
             createEvent: {
+              id: -1,
               ...newEvent,
-              id: uuid(),
               __typename: "Event",
               comments: { __typename: "CommentConnection", items: [] }
             }
           }
         })
       } catch (e) {
-        console.log(e)
+        console.error(e)
         this.newEvent = newEvent
       }
     }
@@ -84,8 +83,8 @@ body {
   font-size: 24px;
 }
 h1 {
-  font-family: "Suez One", serif;
-  font-size: 48px;
+  font-family: "EB Garamond", Georgia, Times, "Times New Roman", serif;
+  font-size: 72px;
   font-weight: 400;
 }
 </style>

@@ -6,11 +6,6 @@ query eventList {
       where
       when
       description
-      comments {
-        items {
-          commentId
-        }
-      }
     }
   }
 }

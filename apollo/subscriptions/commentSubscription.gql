@@ -1,0 +1,7 @@
+subscription($id: String!) {
+  subscribeToEventComments(eventId: $id){
+    eventId
+    commentId
+    content
+  }
+}
