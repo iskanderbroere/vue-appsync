@@ -1796,6 +1796,15 @@ consola@^1.2.0:
     lodash "^4.17.5"
     std-env "^1.1.0"
 
+consola@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-1.3.0.tgz#b5effe41c4ecdce971d79268d72b8f9bde0a8c7a"
+  dependencies:
+    chalk "^2.3.2"
+    figures "^2.0.0"
+    lodash "^4.17.5"
+    std-env "^1.1.0"
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -4348,9 +4357,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nuxt-edge@^2.0.0-25396247.c64bcb7:
-  version "2.0.0-25396247.c64bcb7"
-  resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.0.0-25396247.c64bcb7.tgz#2ecda76617ea409895dd093087d5edca1be8232d"
+nuxt-edge@^2.0.0-25396317.8097d9a:
+  version "2.0.0-25396317.8097d9a"
+  resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.0.0-25396317.8097d9a.tgz#5dc270137377d089b0e14e8ec4c339914e682d1e"
   dependencies:
     "@nuxtjs/friendly-errors-webpack-plugin" "^2.0.2"
     "@nuxtjs/youch" "^4.2.3"
@@ -4364,7 +4373,7 @@ nuxt-edge@^2.0.0-25396247.c64bcb7:
     chokidar "^2.0.3"
     compression "^1.7.1"
     connect "^3.6.5"
-    consola "^1.2.0"
+    consola "^1.3.0"
     css-loader "^0.28.11"
     es6-promise "^4.2.4"
     esm "^3.0.16"
