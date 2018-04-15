@@ -10,7 +10,7 @@
               }"
       />
       <h1>{{ event.name }}</h1>
-      <code>When: {{ event.id }}</code>
+      <time>When: {{ toDate(event.when) }}</time>
       <address>Address: {{ event.where }}</address>
       <p>{{ event.description }}</p>
       <delete-button @clicked="deleteEvent(event.id)">Delete</delete-button>  
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { format } from "date-fns"
 import loadingIndicator from "~/components/loadingIndicator"
 import deleteButton from "~/components/deleteButton"
 import mapbox from "mapbox-gl-vue"
@@ -39,6 +40,10 @@ export default {
     }
   },
   methods: {
+    toDate(dateString) {
+      const n = Number(dateString)
+      return format(n, "dddd")
+    },
     deleteEvent(eventId) {
       const client = this.$apollo.getClient()
       try {

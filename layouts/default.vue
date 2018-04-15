@@ -31,4 +31,13 @@ h1 {
   font-size: 72px;
   font-weight: 400;
 }
+input {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 5px 8px;
+  appearance: none;
+  border: 1px solid #cad0d2;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
 </style>

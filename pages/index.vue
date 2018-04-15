@@ -1,10 +1,9 @@
 <template>
   <main>
     <form @submit.prevent="createEvent()">
-      <input v-model.trim="newEvent.name" placeholder="edit me">
-      <input v-model.trim="newEvent.when" placeholder="edit me">
-      <input v-model.trim="newEvent.where" placeholder="edit me">
-      <input v-model.trim="newEvent.description" placeholder="edit me">
+      <input v-model.trim="newEvent.name" placeholder="Name">
+      <input v-model.trim="newEvent.where" placeholder="Location">
+      <input v-model.trim="newEvent.description" placeholder="Description">
       <button type="submit">Submit</button>
     </form>
     <event-list />
@@ -27,7 +26,6 @@ export default {
     return {
       newEvent: {
         name: "",
-        when: "",
         where: "",
         description: null
       }
@@ -37,7 +35,7 @@ export default {
     createEvent() {
       const newEvent = {
         ...this.newEvent,
-        description: this.newEvent.description && this.newEvent.description !== "" ? this.newEvent.description : null
+        when: Date.now()
       }
       try {
         this.$apollo.mutate({

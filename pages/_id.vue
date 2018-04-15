@@ -8,7 +8,7 @@
     </form>
     <ul>
       <li v-for="comment in event.comments.items" :key="comment.commentId">
-        {{ comment.content }}
+        {{ comment.commentId }}
       </li>
     </ul>
   </article>
@@ -142,14 +142,5 @@ li {
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
-}
-input {
-  display: flex;
-  margin-bottom: 10px;
-  padding: 5px 8px;
-  appearance: none;
-  border: 1px solid #cad0d2;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
