@@ -1,4 +1,4 @@
-query ($id: ID!) {
+query getEvent ($id: ID!) {
   getEvent(id: $id) {
     id
     name
