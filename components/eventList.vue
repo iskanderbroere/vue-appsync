@@ -24,8 +24,8 @@ import { format } from "date-fns"
 import loadingIndicator from "~/components/loadingIndicator"
 import deleteButton from "~/components/deleteButton"
 import mapbox from "mapbox-gl-vue"
-import EVENT_LIST from "~/apollo/queries/eventList.gql"
-import EVENT_DELETE from "~/apollo/mutations/eventDelete.gql"
+import EVENT_LIST from "~/apollo/queries/eventList.js"
+import EVENT_DELETE from "~/apollo/mutations/eventDelete.js"
 
 export default {
   components: {
@@ -41,8 +41,8 @@ export default {
   },
   methods: {
     toDate(dateString) {
-      const n = Number(dateString)
-      return format(n, "dddd")
+      const n = Date(dateString)
+      return format(n)
     },
     deleteEvent(eventId) {
       const client = this.$apollo.getClient()
@@ -51,7 +51,7 @@ export default {
           mutation: EVENT_DELETE,
           variables: { id: eventId },
           update: store => {
-            let data = store.readQuery({ query: EVENT_LIST })
+            const data = store.readQuery({ query: EVENT_LIST })
             let filteredData = data.listEvents.items.findIndex(event => event.id === eventId)
             if (filteredData !== -1) {
               data.listEvents.items.splice(filteredData, 1)
@@ -90,7 +90,7 @@ export default {
 }
 ol {
   list-style: none;
-  margin: 22px;
+  margin: 0;
   padding: 0;
   display: grid;
   grid-gap: 25px;

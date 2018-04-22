@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <form @submit.prevent="createEvent()">
       <input v-model.trim="newEvent.name" placeholder="Name">
       <input v-model.trim="newEvent.where" placeholder="Location">
@@ -7,13 +7,13 @@
       <button type="submit">Submit</button>
     </form>
     <event-list />
-  </main>
+  </div>
 </template>
 
 <script>
 import eventList from "~/components/eventList"
-import EVENT_CREATE from "~/apollo/mutations/eventCreate.gql"
-import EVENT_LIST from "~/apollo/queries/eventList.gql"
+import EVENT_CREATE from "~/apollo/mutations/eventCreate.js"
+import EVENT_LIST from "~/apollo/queries/eventList.js"
 
 export default {
   head: {

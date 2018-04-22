@@ -1,5 +1,8 @@
 <template>
-  <nuxt v-if="hydrated"/>
+  <div class="app">
+    <aside><h1>BONAS</h1><icon scale="3" name="adjust"/></aside>
+    <main><nuxt v-if="hydrated"/></main>
+  </div>
 </template>
 
 <script>
@@ -13,6 +16,24 @@ export default {
 </script>
 
 <style>
+.app {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 50px;
+}
+aside {
+  display: flex;
+  flex-direction: column;
+}
+aside {
+  padding: 50px 0 50px 50px;
+}
+main {
+  padding: 50px 50px 50px 0;
+}
+.app aside h1 {
+  font-size: 122px;
+}
 .fa-icon {
   width: auto;
   height: 1em;
@@ -21,7 +42,7 @@ export default {
   max-height: 100%;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Karla", sans-serif;
   font-weight: 400;
   color: gray(35);
   font-size: 18px;

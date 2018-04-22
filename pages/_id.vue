@@ -8,18 +8,26 @@
     </form>
     <ul>
       <li v-for="comment in event.comments.items" :key="comment.commentId">
-        {{ comment.commentId }}
+        <h2>{{ comment.content }}</h2>
+        <p>{{ toHumanFriendlyDateTime(comment.createdAt) }}</p>  
       </li>
     </ul>
   </article>
 </template>
 
 <script>
-import EVENT_GET from "~/apollo/queries/eventGet.gql"
-import COMMENT_ON_EVENT from "~/apollo/mutations/commentOnEvent.gql"
-import COMMENT_SUBSCRIBE from "~/apollo/subscriptions/commentSubscription.gql"
+import { format } from "date-fns"
+
+import EVENT_GET from "~/apollo/queries/eventGet.js"
+import COMMENT_ON_EVENT from "~/apollo/mutations/commentOnEvent.js"
+import COMMENT_SUBSCRIBE from "~/apollo/subscriptions/commentSubscription.js"
 
 export default {
+  head() {
+    return {
+      title: this.event.name
+    }
+  },
   data() {
     return {
       newComment: {
@@ -34,10 +42,11 @@ export default {
   },
   methods: {
     commentOnEvent() {
+      const getDate = () => new Date()
       const newComment = {
         ...this.newComment,
         eventId: this.$route.params.id,
-        createdAt: Date.now()
+        createdAt: getDate()
       }
       try {
         this.$apollo.mutate({
@@ -70,6 +79,9 @@ export default {
         console.error(e)
         this.newComment = newComment
       }
+    },
+    toHumanFriendlyDateTime(what) {
+      return format(what, "HH:mm:ss - D MMMM YYYY")
     }
   },
   apollo: {
@@ -136,7 +148,7 @@ ul {
 li {
   display: flex;
   margin-bottom: 10px;
-  padding: 5px 8px;
+  padding: 10px 16px;
   flex-direction: column;
   border: 1px solid #cad0d2;
   border-radius: 4px;

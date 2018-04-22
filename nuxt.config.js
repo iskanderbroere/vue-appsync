@@ -5,11 +5,12 @@ import webpack from "webpack"
 export default {
   mode: "spa",
   head: {
+    titleTemplate: "%s - BONAS",
     meta: [{ charset: "utf-8" }, { name: "viewport", content: "width=device-width, initial-scale=1" }],
     link: [
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Open+Sans:400,400i|EB+Garamond:400,700"
+        href: "https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i|EB+Garamond:400,700"
       },
       {
         rel: "stylesheet",
