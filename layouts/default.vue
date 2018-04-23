@@ -1,7 +1,9 @@
 <template>
   <div class="app">
-    <aside><h1>BONAS</h1><icon scale="3" name="adjust"/></aside>
-    <main><nuxt v-if="hydrated"/></main>
+    <h1>Vue AWS Appsync</h1>
+    <main>
+      <nuxt v-if="hydrated"/>
+    </main>
   </div>
 </template>
 

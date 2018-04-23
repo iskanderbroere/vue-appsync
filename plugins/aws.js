@@ -1,5 +1,4 @@
 import AWSAppSyncClient from "aws-appsync"
-import "isomorphic-fetch"
 import Vue from "vue"
 import VueApollo from "vue-apollo"
 
