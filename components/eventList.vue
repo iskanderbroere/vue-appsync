@@ -2,19 +2,12 @@
   <ol>
     <loading-indicator v-if="$apollo.loading"/>
     <li v-for="event in events" v-else :key="event.id">
-      <mapbox :access-token="api"
-              :map-options="{
-                style: 'mapbox://styles/mapbox/light-v9',
-                center: [5.1118473,52.0856266],
-                zoom: 12
-              }"
-      />
       <h1>{{ event.name }}</h1>
       <time>When: {{ toDate(event.when) }}</time>
       <address>Address: {{ event.where }}</address>
       <p>{{ event.description }}</p>
-      <delete-button @clicked="deleteEvent(event.id)">Delete</delete-button>  
-      <delete-button @clicked="$router.push(`/${event.id}`)">more &#8614;</delete-button>  
+      <delete-button @clicked="deleteEvent(event.id)">Delete</delete-button>
+      <delete-button @clicked="$router.push(`/${event.id}`)">more &#8614;</delete-button>
     </li>
   </ol>
 </template>
@@ -23,20 +16,17 @@
 import { format } from "date-fns"
 import loadingIndicator from "~/components/loadingIndicator"
 import deleteButton from "~/components/deleteButton"
-import mapbox from "mapbox-gl-vue"
 import EVENT_LIST from "~/apollo/queries/eventList.js"
 import EVENT_DELETE from "~/apollo/mutations/eventDelete.js"
 
 export default {
   components: {
     loadingIndicator,
-    deleteButton,
-    mapbox
+    deleteButton
   },
   data() {
     return {
-      events: [],
-      api: process.env.MAPBOX_ACCESS_TOKEN
+      events: []
     }
   },
   methods: {

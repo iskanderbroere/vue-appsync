@@ -18,12 +18,11 @@ export default {
       }
     ]
   },
-  modules: ["~/modules/aws.js"],
   render: {
     http2: { push: true }
   },
   css: ["bootstrap/dist/css/bootstrap-reboot.css"],
-  plugins: ["~/plugins/vue-font-awesome", "~/plugins/mapbox"],
+  plugins: ["~/plugins/vue-font-awesome", "~/plugins/aws"],
   build: {
     plugins: [
       new webpack.ProvidePlugin({
